@@ -1,6 +1,10 @@
 (defproject om-datascript "0.0.1"
   :description "Make om and datascript play nice"
   :url "http://github.com/bahulneel/om-datascript"
+  :license {:name "Eclipse Public License - v 1.0"
+            :url "http://www.eclipse.org/legal/epl-v10.html"
+            :distribution :repo
+            :comments "same as Clojure"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2371"]
