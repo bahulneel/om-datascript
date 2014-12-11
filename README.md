@@ -1,3 +1,5 @@
+[![Clojars Project](http://clojars.org/om-datascript/latest-version.svg)](http://clojars.org/om-datascript)
+
 Sample usage
 
 ```clojure
