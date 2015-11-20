@@ -1,4 +1,4 @@
-(defproject om-datascript "0.0.4"
+(defproject om-datascript "0.1.0"
   :description "Make om and datascript play nice"
   :url "http://github.com/bahulneel/om-datascript"
   :license {:name "Eclipse Public License - v 1.0"
@@ -6,17 +6,17 @@
             :distribution :repo
             :comments "same as Clojure"}
 
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2371"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
+                 [org.clojure/clojurescript "1.7.28"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [datascript "0.6.0"]
-                 [om "0.7.3"]]
+                 [datascript "0.13.1"]
+                 [org.omcljs/om "0.9.0"]]
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
 
   :source-paths ["src"]
 
-  :cljsbuild { 
+  :cljsbuild {
     :builds [{:id "om-datascript"
               :source-paths ["src"]
               :compiler {
