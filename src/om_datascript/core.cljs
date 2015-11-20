@@ -1,6 +1,7 @@
 (ns om-datascript.core
-  (:require [datascript :as d]
+  (:require [datascript.core :as d]
             [datascript.query :as dq]
+            [datascript.parser :as dp]
             [om.core :as om :include-macros true]))
 
 (defn cursor-able?
@@ -21,8 +22,9 @@
 
 (defn get-test-queries
   [q]
-  (let [entities (distinct (->> q :where (map first)))]
-    (map (fn [e] (update-in q [:in] conj e))
+  (let [in (set (:in q))
+        entities (distinct (->> q :where (map first)))]
+    (map (fn [e] (assoc q :in (vec (conj in e))))
          entities)))
 
 (defn check-args [q e args]
@@ -37,9 +39,10 @@
                                 (map vector in args)))]
     (when-not conflict? args)))
 
+
 (defn changed?
   [q args tx-report]
-  (let [q (if (sequential? q) (dq/parse-query q) q)
+  (let [q (if (sequential? q) (dp/query->map q) q)
         q (if-not (:in q) (assoc q :in ['$]) q)
         {:keys [db-before db-after tx-data]} tx-report
         qs (get-test-queries q)
@@ -48,7 +51,7 @@
                                (for [q qs e es]
                                  (when-let [args (check-args q e args)]
                                    (let [before (apply d/q q db-before args)
-                                         after (apply d/q q db-after args)]
+                                         after (apply d/q q  db-after args)]
                                      (not= before after))))))]
     changed))
 
