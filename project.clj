@@ -1,4 +1,4 @@
-(defproject om-datascript "0.0.4"
+(defproject om-datascript "0.1.0"
   :description "Make om and datascript play nice"
   :url "http://github.com/bahulneel/om-datascript"
   :license {:name "Eclipse Public License - v 1.0"
